@@ -1,0 +1,17 @@
+<svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .dot { fill: #4A4A4A; }
+  </style>
+  <!-- 첫 줄 -->
+  <circle cx="25" cy="25" r="4" class="dot"/>
+  <circle cx="40" cy="25" r="4" class="dot"/>
+  <circle cx="55" cy="25" r="4" class="dot"/>
+  <!-- 둘째 줄 -->
+  <circle cx="25" cy="40" r="4" class="dot"/>
+  <circle cx="40" cy="40" r="4" class="dot"/>
+  <circle cx="55" cy="40" r="4" class="dot"/>
+  <!-- 셋째 줄 -->
+  <circle cx="25" cy="55" r="4" class="dot"/>
+  <circle cx="40" cy="55" r="4" class="dot"/>
+  <circle cx="55" cy="55" r="4" class="dot"/>
+</svg>

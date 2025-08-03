@@ -1,5 +1,7 @@
-const { withContentlayer } = require('next-contentlayer2')
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
+import { withContentlayer } from 'next-contentlayer2'
+import bundleAnalyzer from '@next/bundle-analyzer'
+
+const withBundleAnalyzer = bundleAnalyzer({
   enabled: process.env.ANALYZE === 'true',
 })
 
@@ -30,10 +32,12 @@ const securityHeaders = [
 const output = 'export' // 강제로 지정
 const basePath = process.env.BASE_PATH || undefined
 const unoptimized = process.env.UNOPTIMIZED ? true : undefined
+const isProd = process.env.NODE_ENV === 'production'
 
 const config = {
-  output,
+  output: 'export',
   basePath,
+  // assetPrefix: isProd ? './' : '',
   reactStrictMode: true,
   trailingSlash: false,
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
@@ -47,7 +51,7 @@ const config = {
         hostname: 'picsum.photos',
       },
     ],
-    unoptimized,
+    unoptimized: true,
   },
   async headers() {
     return [
@@ -66,4 +70,4 @@ const config = {
   },
 }
 
-module.exports = withContentlayer(withBundleAnalyzer(config))
+export default withContentlayer(withBundleAnalyzer(config))
