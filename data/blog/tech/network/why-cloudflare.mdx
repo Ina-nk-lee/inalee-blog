@@ -1,0 +1,47 @@
+---
+title: 'Why use Cloudflare?'
+date: '2025-08-04'
+tags: ['HTTPS', 'DNS', 'blog', 'Cloudflare', 'domain', 'network']
+draft: false
+summary: 'A domain I bought works without any problem. Then why do I attach Cloudflare to it?'
+---
+
+## My domain works fine!
+
+One might ask:
+
+A domain I bought works without any problem. Then why do I attach [Cloudflare](cloudflare.com) to it?
+
+## How does Cloudflare help?
+
+Buying a domain online is similar to buying, well, a domain in real life. Sure, you bought an address. But you still need to lock your house and maybe install a door camera to filter out unwanted visitors. Regular visitors aren't the concern—it's those trying to break in, steal your stuff, or damage your property.
+
+If you want more visitors, you might hand out flyers or register your location on Google Maps so people find you more easily.
+
+Cloudflare addresses these kinds of concerns but in the digital space.
+
+### DNS Management
+
+When we use domains, we prefer English words that are easy to remember. But underneath, domains always point to IP addresses. Cloudflare provides a global network of DNS servers to translate your domain name into IP addresses faster and more reliably than regular DNS providers. This speed comes from its worldwide network of DNS servers close to the user, which significantly reduces the time needed to resolve domain queries.
+
+### HTTPS Certificates and TLS Handshake
+
+Cloudflare automatically issues SSL certificates for your websites for free. These certificates enable HTTPS, a secure and encrypted version of HTTP that protects your data from eavesdropping and man-in-the-middle attacks.
+
+Cloudflare also optimizes the TLS handshake (the process used to establish a secure connection) by using techniques such as TLS Session Resumption, which avoids repeated handshakes for returning visitors, and ALPN (Application-Layer Protocol Negotiation), which efficiently selects the application-layer protocol during the handshake, further reducing latency.
+
+### CDN: Caching and Optimization
+
+Cloudflare has servers worldwide, known as "edge servers," that cache static content (images, JavaScript files, CSS files, etc.) from your website. When someone visits your site, these cached files are delivered from the server closest to them, improving load times.
+
+Traffic compression also helps reduce payload size. By encoding the data sent between servers and browsers, Cloudflare decreases the amount of data transferred, ultimately reducing latency and bandwidth usage.
+
+### Better Safety: DDoS Defense and WAF
+
+Cloudflare protects websites from distributed denial-of-service (DDoS) attacks—attacks designed to overwhelm your server with excessive traffic. It detects and handles suspiciously high volumes of traffic automatically.
+
+Additionally, Cloudflare offers a Web Application Firewall (WAF) that provides customizable rules to detect and block common web vulnerabilities (e.g., SQL injection, cross-site scripting). This extra layer of security helps protect your website from common threats, ensuring it remains safe and stable.
+
+## Conclusion
+
+In short, Cloudflare isn't just another fancy tool. It's a practical and effective way to secure, optimize, and enhance your website.

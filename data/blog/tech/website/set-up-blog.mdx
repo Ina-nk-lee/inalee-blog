@@ -1,0 +1,54 @@
+---
+title: 'My Static Blog Setup: Cloudflare DNS, Pages, and the S3 Detour'
+date: '2025-08-04'
+tags: ['markdown', 'blog', 'AWS', 'Cloudflare', 'Porkbun', 'S3']
+draft: true
+summary: How I bought a domain, failed with S3, and ended up with Cloudflare Pages
+---
+
+# Introduction
+
+One day, I felt an urge to set up my blog out of nowhere and decided to put it into motion before the feeling faded. Nothing huge — just a place to record what I’ve made, how I’ve struggled, and what I’ve felt during my journey in computer science. A personal touch is a plus.
+
+## Buying a Domain
+
+Luckily, my name is not very common, so I could secure .com, .org, .ca, .dev, et cetera. I chose .dev to focus on sharing my experience as a student developer.
+
+While there are tons of websites that offer various domain options, [Porkbun](Porkbun.com) leans more on a cheaper side with an occasional first-year discount. In my case, it starts from 8 USD for the first year and 12 USD for extension.
+
+Setting up with Porkbun is fast and convenient. Just pick a domain, sign up, and pay with Apple Pay. That's pretty much all.
+
+## Connecting to Cloudflare
+
+I connected to my domain to [Clloudflare](cloudflare.com) to
+
+Since Cloudflare offers the same price for the extension, I'm going to migrate the domain to Cloudflare once the first-year discount is over.
+
+## Trying AWS S3 Hosting
+
+## Migrating to Cloudflare Pages
+
+# Conclusion
+
+Some Javascript code
+
+```javascript
+var num1, num2, sum
+num1 = prompt('Enter first number')
+num2 = prompt('Enter second number')
+sum = parseInt(num1) + parseInt(num2) // "+" means "add"
+alert('Sum = ' + sum) // "+" means combine into a string
+```
+
+Some Python code 🐍
+
+```python
+def fib():
+    a, b = 0, 1
+    while True:            # First iteration:
+        yield a            # yield 0 to start with and then
+        a, b = b, a + b    # a will now be 1, and b will also be 1, (0 + 1)
+
+for index, fibonacci_number in zip(range(10), fib()):
+     print('{i:3}: {f:3}'.format(i=index, f=fibonacci_number))
+```
