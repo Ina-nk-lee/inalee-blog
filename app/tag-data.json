@@ -1,12 +1,15 @@
 {
+  "blog": 3,
+  "ta": 1,
+  "reflection": 1,
+  "ubc": 1,
+  "computer-systems": 1,
+  "aws": 1,
+  "cloudflare": 2,
+  "porkbun": 1,
+  "s3": 1,
   "https": 1,
   "dns": 1,
-  "blog": 2,
-  "cloudflare": 2,
   "domain": 1,
-  "network": 1,
-  "markdown": 1,
-  "aws": 1,
-  "porkbun": 1,
-  "s3": 1
+  "network": 1
 }
