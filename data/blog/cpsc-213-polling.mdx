@@ -1,0 +1,53 @@
+---
+title: 'Polling and Interrupts'
+date: '2025-08-07'
+tags: ['OS', 'hardware', 'TA', 'UBC', 'review', 'tech', 'polling', 'interrupt']
+draft: false
+summary: 'Polling vs. interrupts: different strategies for making the CPU wait for I/O.'
+---
+
+# Polling and Interrupts
+
+The CPU is usually the fastest part of a computer. It handles calculations and tasks that require high performance. Meanwhile, data that doesn’t need to be accessed instantly is stored in memory, then in SSDs, and finally HDDs.
+
+Because of this speed gap, the CPU often has to wait for slower components, especially I/O devices such as drives, mice, and keyboards. For example, if I want to edit a file stored on a drive, the CPU has to wait for the file to be opened before it can start editing, often by initiating **PIO** (Programmed I/O).
+
+**Polling** and **interrupts** are two strategies for handling this wait.
+
+## Polling vs. Interrupts
+
+Imagine waiting for an Amazon package.  
+With **polling**, you’d keep checking outside your front door to see if the delivery driver has arrived. The CPU does the same; it repeatedly checks the device’s status to see if the request has been completed.
+
+But constantly checking wastes time and energy. Instead, with **interrupts**, you’d just wait until the driver rings your buzzer. The CPU also waits until the I/O device signals that it’s ready. When the device completes the request (often by sending data directly to memory using **DMA**, Direct Memory Access), it sends an interrupt signal to the CPU. The CPU then pauses whatever it’s doing, handles the request, and goes back to its previous work.
+
+```
+Polling:
+CPU: [Check] → Idle work → [Check] → Idle work → [Check] …
+
+Interrupt:
+CPU: Idle work → [I/O device uses DMA to transfer data to memory + interrupt signal] → Handle event → Idle work …
+```
+
+## Examples
+
+- **Polling** works better when the device status changes frequently and predictably, for example, reading a clock or handling a scheduled event.
+- **Interrupts** are more efficient when events happen less frequently, since they avoid constant checks but have slightly higher handling overhead. Common examples include keyboards, mice, network interface cards (NICs), and disk controllers.
+
+```c
+// Polling
+while (1) {
+    if (device_has_data()) {
+        process_data();
+    }
+}
+
+// Interrupt
+while (system_running) {
+    // Do other work
+}
+
+void interrupt_handler() {
+    process_data();
+}
+```
