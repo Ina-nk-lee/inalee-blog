@@ -1,0 +1,74 @@
+---
+title: 'RAG Dev Log #1: Overall Design'
+date: '2025-10-03'
+tags: ['RAG', 'project', 'blog', 'Supabase', 'OpenAI', 'embedding']
+draft: false
+summary: 'How I designed the pipeline for a simple RAG project that answers questions based on uploaded PDF documents.'
+---
+
+## Simple RAG (Retrieval-Augmented Generation) project
+
+I've been working on a RAG project that parses PDF documents and answers questions using OpenAI. Here is a quick summary of what I've built so far.
+
+### Pipeline
+
+```
+[1] Document Upload (PDF)
+   ↓
+[2] Text Parsing & Chunking
+   ↓
+[3] OpenAI Embeddings API
+   ↓
+[4] Supabase Vector DB
+   ↓
+[5] Query + RAG Response (WIP)
+```
+
+## 1. PDF to Plain Text
+
+I used [pdf-parse](https://www.npmjs.com/package/pdf-parse) to parse and convert text in uploaded PDF files to raw text.
+
+```typescript
+import pdf from 'pdf-parse'
+
+const buf = fs.readFileSync(path)
+const data = await pdf(buf)
+```
+
+## 2. Plain Text to Chunks
+
+I chopped text into chunks of size 800 with overlapping text of size 100 to prevent it from being lost in the context. The size could change for the accuracy later on.
+
+```typescript
+while (i < text.length) {
+  const end = Math.min(i + chunkSize, text.length) // end is an exclusive index in .slice()
+  const curr = text.slice(i, end).trim()
+
+  i = end - overlap
+}
+```
+
+## 3. Chunks to Embeddings
+
+I fed chunks to OpenAI's embedding model. Text-embedding-3-small was chosen to optimize performance within the proposed cost -- $5.
+
+```typescript
+const openai = new OpenAI({ apiKey: OPENAI_API_KEY }) // {} optional object
+const res = await openai.embeddings.create({
+  model: EMBEDDING_MODEL,
+  input: text,
+})
+```
+
+## 4. Store in Supabase
+
+Now each chunk has embeddings, I stored them in Supabase.
+
+```
+    const { error } = await supabase.from("chunks").insert({
+      document_id: docuId,
+      content: chunks[i],
+      embedding: embeddings,
+      chunk_index: i,
+    });
+```
